@@ -4,7 +4,7 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    @authors = Author.except_unknown
   end
 
   # GET /authors/1

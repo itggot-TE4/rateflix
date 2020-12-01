@@ -5,5 +5,13 @@
   <%= @author.name %>
 </p>
 
+<p>
+  <ul>
+    <% @author.movies.each do |movie| %>    
+        <li><%= link_to movie.title, movie %></li>      
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_author_path(@author) %> |
 <%= link_to 'Back', authors_path %>

@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :author %>
-    <%= form.select :author_id, options_for_select(Author.all.map{|s|[s.name, s.id]}) %>
+    <%= form.select :author_id, options_for_select(@authors.map{|s|[s.name, s.id]}) %>
   </div>
 
   <div class="actions">

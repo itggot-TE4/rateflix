@@ -15,10 +15,12 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
+    @authors = Author.except_unknown
   end
 
   # GET /movies/1/edit
   def edit
+    @authors = Author.except_unknown
   end
 
   # POST /movies

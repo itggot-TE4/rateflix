@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie,   only: [:show, :edit, :update, :destroy]
+  before_action :set_authors, only: [:new, :edit]
 
   # GET /movies
   # GET /movies.json
@@ -14,13 +15,11 @@ class MoviesController < ApplicationController
 
   # GET /movies/new
   def new
-    @movie = Movie.new
-    @authors = Author.except_unknown
+    @movie = Movie.new  
   end
 
   # GET /movies/1/edit
-  def edit
-    @authors = Author.except_unknown
+  def edit    
   end
 
   # POST /movies
@@ -67,6 +66,10 @@ class MoviesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Movie.find(params[:id])
+    end
+
+    def set_authors
+      @authors = Author.except_unknown
     end
 
     # Only allow a list of trusted parameters through.

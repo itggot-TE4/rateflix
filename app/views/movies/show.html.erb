@@ -2,7 +2,12 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @movie.title %>
+  <%= @movie.title %>  
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @movie.author.name %>
 </p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |

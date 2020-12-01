@@ -3,9 +3,9 @@ class AddAuthorRefToMovies < ActiveRecord::Migration[6.0]
     # add reference with NULL allowed
     add_reference :movies, :author, foreign_key: true
 
-    # add appropriate author record to each existing movie
+    # add default unknown author to each existing movie
     Movie.find_each do |movie|
-      movie.update!(author: Author.first)
+      movie.update!(author: Author.unknown)
     end
 
     # add NOT NULL constraint

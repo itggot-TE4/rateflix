@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :movie_id %>
-    <%= form.text_field :movie_id %>
+    <%= form.label :movie %>
+    <%= form.select :movie_id, options_for_select(@movies.map{|s|[s.title, s.id]}, review.movie&.id), {:include_blank => true} %>
   </div>
 
   <div class="field">

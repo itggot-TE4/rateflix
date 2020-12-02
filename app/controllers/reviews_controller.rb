@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_movies, only: [:new, :edit, :create, :update]
 
   # GET /reviews
   # GET /reviews.json
@@ -68,6 +69,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_movies
+      @movies = Movie.all
     end
 
     # Only allow a list of trusted parameters through.

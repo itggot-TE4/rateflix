@@ -1,3 +1,7 @@
 <%= link_to 'Movies', movies_path %> |
 <%= link_to 'Authors', authors_path %> |
-<%= link_to 'Login', '/users/sign_in' %>
+<% unless user_signed_in? %>
+    <%= link_to 'Login', '/users/sign_in' %>
+<% else %>
+    <%= link_to 'Logout', '/users/sign_out', method: :delete %>
+<% end %>

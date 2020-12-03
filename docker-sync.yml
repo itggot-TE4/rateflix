@@ -1,0 +1,6 @@
+version: 2
+syncs:
+  web-sync:
+    src: './'
+    sync_strategy: 'native_osx'
+    sync_excludes: ['tmp','.git', 'log']

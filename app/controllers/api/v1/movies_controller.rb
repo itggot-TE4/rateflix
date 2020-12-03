@@ -1,4 +1,4 @@
-class MoviesController < ApplicationController
+class Api::V1::MoviesController < ActionController::API
   before_action :set_movie,   only: [:show, :edit, :update, :destroy]
   before_action :set_authors, only: [:new, :edit, :create, :update]
 
@@ -15,11 +15,11 @@ class MoviesController < ApplicationController
 
   # GET /movies/new
   def new
-    @movie = Movie.new  
+    @movie = Movie.new
   end
 
   # GET /movies/1/edit
-  def edit    
+  def edit
   end
 
   # POST /movies

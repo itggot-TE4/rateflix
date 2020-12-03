@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :reviews
+
+  namespace :api do
+    namespace :v1 do
+      resources :reviews
+      resources :authors
+      resources :movies
+    end
+  end
+
   devise_for :users
-  resources :authors
-  resources :movies
-  
   root 'movies#index'
 end

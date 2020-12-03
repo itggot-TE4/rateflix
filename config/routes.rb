@@ -8,6 +8,17 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users,
+    defaults: { format: :json },
+    path: '',
+    path_names: {
+      sign_in: 'api/v1/login',
+      sign_out: 'api/v1/logout',
+      registration: 'api/v1/signup'
+    },
+    controllers: {
+      sessions: 'sessions',
+      registrations: 'registrations'
+    }
   root 'movies#index'
 end

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :reviews
       resources :authors
       resources :movies
+      resources :users, only: [:show]
     end
   end
 

@@ -1,2 +1,2 @@
 json.extract! author, :id, :name, :created_at, :updated_at
-json.url author_url(author, format: :json)
+json.url api_v1_author_url(author, format: :json)

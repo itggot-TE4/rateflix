@@ -1,1 +1,1 @@
-json.partial! "reviews/review", review: @review
+json.partial! "api/v1/reviews/review", review: @review

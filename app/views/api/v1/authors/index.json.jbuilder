@@ -1,1 +1,1 @@
-json.array! @authors, partial: "authors/author", as: :author
+json.array! @authors, partial: "api/v1/authors/author", as: :author

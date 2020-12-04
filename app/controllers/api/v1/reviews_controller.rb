@@ -1,4 +1,4 @@
-class Api::V1::ReviewsController < ActionController::API
+class Api::V1::ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movies, only: [:new, :edit, :create, :update]
@@ -28,12 +28,12 @@ class Api::V1::ReviewsController < ActionController::API
   def create
     @review = Review.new(review_params)
 
-    @review.user = current_user
+    @review.user = User.find(current_user.id)
 
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.json { render :show, status: :created, location: api_v1_review_url(@review) }
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class Api::V1::ReviewsController < ActionController::API
     respond_to do |format|
       if @review.update(review_params)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
+        format.json { render :show, status: :ok, location: api_v1_review_url(@review) }
       else
         format.html { render :edit }
         format.json { render json: @review.errors, status: :unprocessable_entity }

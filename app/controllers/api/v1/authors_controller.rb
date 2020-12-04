@@ -1,4 +1,4 @@
-class Api::V1::AuthorsController < ActionController::API
+class Api::V1::AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
 
   # GET /authors
@@ -29,7 +29,7 @@ class Api::V1::AuthorsController < ActionController::API
     respond_to do |format|
       if @author.save
         format.html { redirect_to @author, notice: 'Author was successfully created.' }
-        format.json { render :show, status: :created, location: @author }
+        format.json { render :show, status: :created, location: api_v1_author_url(@author) }
       else
         format.html { render :new }
         format.json { render json: @author.errors, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class Api::V1::AuthorsController < ActionController::API
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to @author, notice: 'Author was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author }
+        format.json { render :show, status: :ok, location: api_v1_author_url(@author) }
       else
         format.html { render :edit }
         format.json { render json: @author.errors, status: :unprocessable_entity }

@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
 
   def render_jsonapi_response(resource)
     if resource.errors.empty?

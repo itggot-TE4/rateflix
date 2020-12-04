@@ -1,4 +1,4 @@
-class Api::V1::MoviesController < ActionController::API
+class Api::V1::MoviesController < ApplicationController
   before_action :set_movie,   only: [:show, :edit, :update, :destroy]
   before_action :set_authors, only: [:new, :edit, :create, :update]
 
@@ -30,7 +30,7 @@ class Api::V1::MoviesController < ActionController::API
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
-        format.json { render :show, status: :created, location: @movie }
+        format.json { render :show, status: :created, location: api_v1_movie_url(@movie) }
       else
         format.html { render :new }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class Api::V1::MoviesController < ActionController::API
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
-        format.json { render :show, status: :ok, location: @movie }
+        format.json { render :show, status: :ok, location: api_v1_movie_url(@movie) }
       else
         format.html { render :edit }
         format.json { render json: @movie.errors, status: :unprocessable_entity }

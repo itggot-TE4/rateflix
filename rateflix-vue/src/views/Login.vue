@@ -9,7 +9,7 @@
     <div v-else>
       <input v-model="email" type="text" placeholder="email" />
       <input v-model="password" type="password" placeholder="password" />
-      <button @click="login">Login</button>
+      <button data-cy="login" @click="login">Login</button>
     </div>
   </div>
 </template>

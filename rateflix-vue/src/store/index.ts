@@ -10,12 +10,9 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
-    async login() {
+    async login({}, credentials) {
       const response = await axios.post("http://localhost:3000/api/v1/login", {
-        user: {
-          email: "a@a.a",
-          password: "123123"
-        }
+        user: credentials
       });
       console.log(response.headers);
     }

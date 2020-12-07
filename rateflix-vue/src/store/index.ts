@@ -29,7 +29,7 @@ export default new Vuex.Store({
         /* TDOO: fetch user info from backend */
         commit('setToken', response.headers['authorization']);
       } catch (error) {
-        commit('setFailure', error);
+        commit('setFailure', error.response.data.error);
       }
     }
   },

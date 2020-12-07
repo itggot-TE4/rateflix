@@ -44,12 +44,8 @@ export default new Vuex.Store({
         commit('setFailure', error);
       }
     },
-    async fetchReviews({ state, commit }) {
-      const response = await axios.get("http://localhost:3000/api/v1/reviews", {
-        headers: {
-          authorization: state.token,
-        }
-      });
+    async fetchReviews({ commit }) {
+      const response = await axios.get("http://localhost:3000/api/v1/reviews");
       console.log(response);
       commit('setReviews', response.data);
     }

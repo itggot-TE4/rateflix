@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: "",
-    failure: ""
+    failure: "",
+    reviews: []
   },
   mutations: {
     setToken(state, token) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
       } else {
         state.failure = "";
       }
+    },
+    setReviews(state, reviews) {
+      state.reviews = reviews;
     }
   },
   actions: {
@@ -39,6 +43,11 @@ export default new Vuex.Store({
       } catch (error) {
         commit('setFailure', error);
       }
+    },
+    async fetchReviews({ commit }) {
+      const response = await axios.post("http://localhost:3000/api/v1/reviews");
+      console.log(response);
+      commit('setReviews', response.data);
     }
   },
   getters: {

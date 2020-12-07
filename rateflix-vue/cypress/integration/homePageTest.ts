@@ -1,5 +1,7 @@
 describe('My First Test', () => {
-  it('Does not do much!', () => {
-    expect(true).to.equal(false)
+  it('finds the content "Home"', () => {
+    cy.visit('http://localhost:8080')
+
+    cy.contains('Home')
   })
 })

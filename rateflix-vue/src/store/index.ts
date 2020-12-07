@@ -6,28 +6,39 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: ""
+    token: "",
+    failure: ""
   },
   mutations: {
     setToken(state, token) {
       state.token = token;
+    },
+    setFailure(state, failure) {
+      state.failure = failure;
     }
   },
   actions: {
     async login({ commit }, credentials) {
-      const response = await axios.post("http://localhost:3000/api/v1/login", {
-        user: credentials
-      });
+      try {
+        const response = await axios.post("http://localhost:3000/api/v1/login", {
+          user: credentials
+        });
 
-      console.log(response.headers);
+        console.log(response.headers);
 
-      /* TDOO: fetch user info from backend */
-      commit('setToken', response.headers['authorization']);
+        /* TDOO: fetch user info from backend */
+        commit('setToken', response.headers['authorization']);
+      } catch (error) {
+        commit('setFailure', error);
+      }
     }
   },
   getters: {
     currentUser(state) {
       return state.token;
+    },
+    authFailure(state) {
+      return state.failure;
     }
   }
 });

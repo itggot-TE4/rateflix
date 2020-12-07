@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="error" v-if="$store.getters.authFailure">
+      {{ $store.getters.authFailure }}
+    </div>
     <div v-if="$store.getters.currentUser">
       <button @click="logout">Logout</button>
     </div>
@@ -35,3 +38,9 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+</style>

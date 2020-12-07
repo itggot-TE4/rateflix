@@ -1,8 +1,13 @@
 <template>
   <div>
-    <input v-model="email" type="text" placeholder="email" />
-    <input v-model="password" type="password" placeholder="password" />
-    <button @click="login">Login</button>
+    <div v-if="$store.getters.currentUser">
+      <button @click="logout">Logout</button>
+    </div>
+    <div v-else>
+      <input v-model="email" type="text" placeholder="email" />
+      <input v-model="password" type="password" placeholder="password" />
+      <button @click="login">Login</button>
+    </div>
   </div>
 </template>
 
@@ -23,6 +28,9 @@ export default Vue.extend({
         email: this.email,
         password: this.password
       });
+    },
+    logout() {
+      console.log("log out!");
     }
   }
 });

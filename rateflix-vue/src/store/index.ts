@@ -8,14 +8,26 @@ export default new Vuex.Store({
   state: {
     token: ""
   },
-  mutations: {},
+  mutations: {
+    setToken(state, token) {
+      state.token = token;
+    }
+  },
   actions: {
-    async login({}, credentials) {
+    async login({ commit }, credentials) {
       const response = await axios.post("http://localhost:3000/api/v1/login", {
         user: credentials
       });
+
       console.log(response.headers);
+
+      /* TDOO: fetch user info from backend */
+      commit('setToken', response.headers['authorization']);
     }
   },
-  modules: {}
+  getters: {
+    currentUser(state) {
+      return state.token;
+    }
+  }
 });

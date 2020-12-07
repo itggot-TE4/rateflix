@@ -13,8 +13,15 @@ export default new Vuex.Store({
     setToken(state, token) {
       state.token = token;
     },
-    setFailure(state, failure) {
-      state.failure = failure;
+    setFailure(state, error) {
+      if (error.response) {
+        // Request made and server responded
+        state.failure = error.response.data.error || "Server did a oopsie";
+      } else if (error) {
+        state.failure = "Couldn't connect to server."
+      } else {
+        state.failure = "";
+      }
     }
   },
   actions: {
@@ -28,8 +35,9 @@ export default new Vuex.Store({
 
         /* TDOO: fetch user info from backend */
         commit('setToken', response.headers['authorization']);
+        commit('setFailure', "");
       } catch (error) {
-        commit('setFailure', error.response.data.error);
+        commit('setFailure', error);
       }
     }
   },

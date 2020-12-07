@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="error" v-if="$store.getters.authFailure">
-      {{ $store.getters.authFailure }}
+    <div class="error" v-if="authFailure">
+      {{ authFailure }}
     </div>
-    <div v-if="$store.getters.currentUser">
+    <div v-if="currentUser">
       <button @click="logout">Logout</button>
     </div>
     <div v-else>
@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "Login",
@@ -24,6 +25,12 @@ export default Vue.extend({
       email: "",
       password: ""
     }
+  },
+  computed: {
+    ...mapGetters({
+        currentUser: 'currentUser',
+        authFailure: 'authFailure'
+      })
   },
   methods: {
     login() {

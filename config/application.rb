@@ -18,6 +18,7 @@ module Myapp
         origins "localhost:8080"
         resource '*',
           headers: :any,
+          expose: ['access-token', 'expiry', 'token-type', 'Authorization'],
           methods: :any,
           credentials: true
       end

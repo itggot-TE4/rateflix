@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 review1:
-  user: user1
+  user: user2
   movie: movie1
   rating: 1
   text: trash

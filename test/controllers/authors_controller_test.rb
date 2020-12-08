@@ -10,17 +10,12 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_api_v1_author_url
-    assert_response :success
-  end
-
   test "should create author" do
     assert_difference('Author.count') do
-      post api_v1_authors_url, params: { author: { name: @author.name } }
+      post api_v1_authors_url, params: { author: { name: "test_#{@author.name}" } }
     end
 
-    assert_redirected_to api_v1_author_url(Author.last)
+    assert_response 201
   end
 
   test "should show author" do
@@ -28,14 +23,9 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_api_v1_author_url(@author)
-    assert_response :success
-  end
-
   test "should update author" do
     patch api_v1_author_url(@author), params: { author: { name: @author.name } }
-    assert_redirected_to api_v1_author_url(@author)
+    assert_response 200
   end
 
   test "should destroy author" do
@@ -43,6 +33,6 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
       delete api_v1_author_url(@author)
     end
 
-    assert_redirected_to api_v1_authors_url
+    assert_response 204
   end
 end

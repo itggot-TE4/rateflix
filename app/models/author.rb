@@ -1,5 +1,5 @@
 class Author < ApplicationRecord
-    has_many :movies
+    has_many :movies, dependent: :destroy
     validates :name, presence: true, uniqueness: { case_sensitive: false }
 
     scope :except_unknown, -> { where.not(name: "UNKNOWN") }

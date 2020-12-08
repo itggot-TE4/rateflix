@@ -10,17 +10,12 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_api_v1_movie_url
-    assert_response :success
-  end
-
   test "should create movie" do
     assert_difference('Movie.count') do
-      post api_v1_movies_url, params: { movie: { title: @movie.title, author_id: @movie.author_id } }
+      post api_v1_movies_url, params: { movie: { title: "test_#{@movie.title}", author_id: @movie.author_id } }
     end
 
-    assert_redirected_to api_v1_movie_url(Movie.last)
+    assert_response 201
   end
 
   test "should show movie" do
@@ -28,14 +23,9 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_api_v1_movie_url(@movie)
-    assert_response :success
-  end
-
   test "should update movie" do
     patch api_v1_movie_url(@movie), params: { movie: { title: @movie.title, author_id: @movie.author_id } }
-    assert_redirected_to api_v1_movie_url(@movie)
+    assert_response 200
   end
 
   test "should destroy movie" do
@@ -43,6 +33,6 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
       delete api_v1_movie_url(@movie)
     end
 
-    assert_redirected_to api_v1_movies_url
+    assert_response 204
   end
 end

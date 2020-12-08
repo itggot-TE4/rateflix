@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ReviewsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @review = reviews(:one)
+    @review = reviews(:review1)
   end
 
   test "should get index" do
